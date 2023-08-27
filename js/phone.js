@@ -9,6 +9,17 @@ const displayPhones = phones => {
     const phoneContainer = document.getElementById('phone-container');
     phoneContainer.textContent = '';
 
+    const showAllContainer = document.getElementById('show-all-container');
+    if(phones.length > 5){
+        showAllContainer.classList.remove('hidden');
+    }else{
+        showAllContainer.classList.add('hidden');
+    }
+
+
+    phones =phones.slice(0,5);
+
+
     phones.forEach(phone => {
         const phoneCard = document.createElement('div');
         phoneCard.classList = `card bg-white p-4 shadow-md rounded-md cursor-pointer`;
