@@ -10,14 +10,14 @@ const displayPhones = phones => {
     phoneContainer.textContent = '';
 
     const showAllContainer = document.getElementById('show-all-container');
-    if(phones.length > 5){
+    if(phones.length > 12){
         showAllContainer.classList.remove('hidden');
     }else{
         showAllContainer.classList.add('hidden');
     }
 
 
-    phones =phones.slice(0,5);
+    phones =phones.slice(0,12);
 
 
     phones.forEach(phone => {
