@@ -24,47 +24,63 @@
     body {
       font-family: 'Work Sans', sans-serif;
     }
-
   </style>
 </head>
 
 <body>
 
   <!-- header section -->
-<header class="lg:py-16 md:px-10 lg:px-36">
-  <div class="text-center  lg:py-8 lg:p-4 mx-auto bg-rose-500 mb-10">       
-    <h1 class="text-7xl font-semibold text-white">Hunting Phone      </h1>
-  </div>
-  <div class=" px-4 lg:py-6 lg:w-8/12 mx-auto rounded-lg lg:bg-white lg:shadow-md">
-    <div class="flex justify-center">
-      <input id="search-field" type="text"
-        class="border rounded-l-xl px-3 py-3 w-8/12 focus:outline-none focus:ring focus:border-blue-300"
-        placeholder="Search...">
-      <button onclick="serachButton()"
-        class=" text-white w-3/12 rounded-r-xl px-4 py-2 bg-teal-600  hover:bg-teal-800 focus:outline-none focus:ring focus:border-blue-300"
-        >Search</button>
+  <header class="lg:py-16 md:px-10 lg:px-36">
+    <div class="text-center  lg:py-8 lg:p-4 mx-auto bg-rose-500 mb-10">
+      <h1 class="text-7xl font-semibold text-white">Hunting Phone </h1>
     </div>
-  </div>
-</header>
-  
+    <div class=" px-4 lg:py-6 lg:w-8/12 mx-auto rounded-lg lg:bg-white lg:shadow-md">
+      <div class="flex justify-center">
+        <input id="search-field" type="text"
+          class="border rounded-l-xl px-3 py-3 w-8/12 focus:outline-none focus:ring focus:border-blue-300"
+          placeholder="Search...">
+        <button onclick="serachButton()"
+          class=" text-white w-3/12 rounded-r-xl px-4 py-2 bg-teal-600  hover:bg-teal-800 focus:outline-none focus:ring focus:border-blue-300">Search</button>
+      </div>
+    </div>
+  </header>
+
   <main class="lg:mb-20">
     <section class="mx-10 mt-10 lg:mx-32 ">
       <div class="text-center">
         <span id="loading-spinner" class="loading loading-ring loading-lg text-rose-700 hidden"></span>
       </div>
       <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
+
       </div>
     </section>
 
     <section>
       <div id="show-all-container" class="hidden text-center mt-10">
-        <button  class="  text-white text-xl px-16 py-2 bg-rose-600 rounded-md hover:bg-teal-800 focus:outline-none focus:ring focus:border-blue-300" >Show All  </button>
+        <button onclick="handleShowAll()"
+          class="text-white text-xl px-16 py-2 bg-rose-600 rounded-md hover:bg-teal-800 focus:outline-none focus:ring focus:border-blue-300">Show
+          All </button>
       </div>
     </section>
+
+    <!-- Show details modal -->
+    <section>
+      <!-- Open the modal using ID.showModal() method -->
+      <button class="btn" onclick="my_modal_5.showModal()">open modal</button>
+      <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+        <form method="dialog" class="modal-box">
+          <h3 class="font-bold text-lg">Hello!</h3>
+          <p class="py-4">Press ESC key or click the button below to close</p>
+          <div class="modal-action">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </div>
+        </form>
+      </dialog>
+    </section>
   </main>
- 
-<script src="js/phone.js"></script>
+
+  <script src="js/phone.js"></script>
 
 </body>
 

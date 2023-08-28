@@ -1,24 +1,25 @@
-const loadPhone = async (serachText) => {
+const loadPhone = async (serachText,isShowAll) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${serachText}`);
     const data = await res.json();
     const phones = data.data;
     // console.log(phones);
-    displayPhones(phones);
+    displayPhones(phones,isShowAll);
 }
-const displayPhones = phones => {
+const displayPhones = (phones,isShowAll) => {
     const phoneContainer = document.getElementById('phone-container');
     phoneContainer.textContent = '';
 
     const showAllContainer = document.getElementById('show-all-container');
-    if(phones.length > 12){
+    if(phones.length > 12 && !isShowAll){
         showAllContainer.classList.remove('hidden');
     }else{
         showAllContainer.classList.add('hidden');
     }
 
-
-    phones =phones.slice(0,12);
-
+    console.log('is show all', isShowAll);
+    if(!isShowAll){
+        phones =phones.slice(0,12);
+    }
 
     phones.forEach(phone => {
         const phoneCard = document.createElement('div');
@@ -30,8 +31,8 @@ const displayPhones = phones => {
         <div class="card-body items-center text-center">
             <h2 class="text-2xl font-semibold text-red-500 "> ${phone.phone_name} </h2>
             <p> If a dog chews shoes whose shoes does he choose?</p>
-            <button id="purchaseButton" class="bg-pink bg-teal-600 text-white rounded-md w-full  py-2 hover:bg-teal-800" onclick="
-                    my_modal_1.showModal()" > Buy Now </button>
+            <button onclick="handleShowDetails(${phone.slug})" class="bg-pink bg-teal-600 text-white rounded-md w-full  py-2 hover:bg-teal-800" onclick="
+                    showDetailsModal" > Show Details </button>
                     
         </div>
         `;
@@ -40,13 +41,18 @@ const displayPhones = phones => {
     //hidden toggleloading spring
     toggleLoadingSpinner(false);
 }
+
+
+
+
+
 //handle seach button
-const serachButton = () =>{
+const serachButton = (isShowAll) =>{
     toggleLoadingSpinner(true);
     const serachField = document.getElementById('search-field');
     const serachText = serachField.value;
     console.log(serachText);
-    loadPhone(serachText);
+    loadPhone(serachText,isShowAll);
 }
  
 
@@ -57,4 +63,15 @@ const toggleLoadingSpinner = (isLoadding) => {
     }else{
         LoadingSpinner.classList.add('hidden');
     }
+}
+
+//show all button 
+const handleShowAll = () => {
+    serachButton(true);
+}
+
+const handleShowDetails = async (id) =>{
+    const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
+    const data = await res.json();
+    console.log(data);
 }
